@@ -18,26 +18,26 @@ public class Bot {
     private List<String> windows = new ArrayList<>();
     private String proxy;
 
-    public Bot(String botName, String username, String proxy) {
+    public Bot(String botName, String username) {
         this.name = botName;
         this.username = username;
-        this.proxy = proxy;
+        //this.proxy = proxy;
     }
 
     public void run() throws InterruptedException {
-        Utils.log("proxy: "+proxy);
+        //Utils.log("proxy: "+proxy);
         System.setProperty("webdriver.edge.driver", "C:\\Users\\trent\\Desktop\\Libs\\msedgedriver.exe");
 
-        Proxy p = new org.openqa.selenium.Proxy();
-        p.setHttpProxy(proxy).setSslProxy(proxy);
-
-        EdgeOptions options = new EdgeOptions();
+        //Proxy p = new org.openqa.selenium.Proxy();
+        //p.setHttpProxy(proxy).setSslProxy(proxy);
+//
+        //EdgeOptions options = new EdgeOptions();
         //options.setProxy(p);
         //options.setCapability(CapabilityType.PROXY, p);
 
-        WebDriver driver = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver();
         driver.get("https://www.instagram.com/accounts/emailsignup/");
-        Thread.sleep(10000);
+        Thread.sleep(2000);
 
         try {
             String currentName = getUsername();
@@ -62,13 +62,13 @@ public class Bot {
             password.click();
             password.sendKeys(currentName + "password69420!");
 
-            Thread.sleep(500);
+            Thread.sleep(100);
 
             WebElement signupButton = Utils.findElement(driver, Utils.Types.BUTTON, "Sign up");
             assert signupButton != null;
             Utils.log("Clicking Sign Up...");
             signupButton.click();
-            Thread.sleep(5000);
+            Thread.sleep(500);
 
             WebElement yearSelect = Utils.findElement(driver, Utils.Types.SELECT, "Year:");
             assert yearSelect != null;
@@ -78,7 +78,7 @@ public class Bot {
             assert optionSelect != null;
             optionSelect.click();
 
-            Thread.sleep(1000);
+            Thread.sleep(200);
 
             WebElement nextButton = Utils.findElement(driver, Utils.Types.BUTTON, "Next");
             assert nextButton != null;
@@ -88,7 +88,7 @@ public class Bot {
 
 
             Utils.createNewTab(driver); // open the new tab
-            Thread.sleep(20000);
+            Thread.sleep(5000);
             windows.addAll(driver.getWindowHandles()); // add all of the current window handles...
             //driver.navigate().to(url);
             driver.switchTo().window(windows.get(1));//switch to the new window
@@ -103,7 +103,7 @@ public class Bot {
             driver.close();
 
             driver.switchTo().window(windows.get(0));//switch to the original window...
-            Thread.sleep(500);
+            Thread.sleep(200);
 
 
 
@@ -118,7 +118,7 @@ public class Bot {
             assert nextButton2 != null;
             Utils.log("Clicking Next...");
             nextButton2.click();
-            Thread.sleep(10000);
+            Thread.sleep(200);
 
 
         } catch (Exception e) {

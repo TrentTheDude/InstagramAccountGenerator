@@ -64,13 +64,7 @@ public class Utils {
     }
 
     public static WebElement findElement(WebDriver driver, Types type, String toEqual){
-        if (type.equals(Types.DIV)){
-            for (WebElement el : driver.findElements(By.className(toEqual))) {
-                if (el.getText().contains("Instagram code")) {
-                    return el;
-                }
-            }
-        }
+
         for (WebElement el : driver.findElements(By.tagName(type.name().toLowerCase()))) {
             if (type.equals(Types.INPUT)){
                 String label = el.getAttribute("aria-label");
@@ -101,6 +95,13 @@ public class Utils {
             if (type.equals(Types.A)){
                 //String label = el.getText()+", "+el.getTagName()+", "+el.getAttribute("title")+", "+el.getAriaRole();
                 if (el.getText().equalsIgnoreCase(toEqual)){
+                    return el;
+                }
+            }
+        }
+        if (type.equals(Types.DIV)){
+            for (WebElement el : driver.findElements(By.className(toEqual))) {
+                if (el.getText().contains("Instagram code")) {
                     return el;
                 }
             }
