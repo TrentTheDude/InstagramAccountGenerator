@@ -4,4 +4,6 @@
 
 Created this Instagram generator in hopes to actually have one that works, although that did not happen. If someones forks this and gets a workaround that works on Instagram definitely let me know!
 
+Developed with Selenium Java SDK and my brain...
+
 Author: Trent
